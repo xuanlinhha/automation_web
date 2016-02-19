@@ -1,0 +1,41 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  background-color: #f5f5f5;
+  
+  text-indent: 10px
+}
+
+
+/* Custom styles
+-------------------------------------------------- */
+th,td {
+	text-align: center;
+}
+.switch-status .device-on.active, .switch-status .device-off.active{
+	background-color: #33FF33;
+}
+
+/*
+.navbar-inverse {
+	background:url(/automation/static/images/bg-header.jpg) repeat-x;
+}
+
+
+#username-navbar,#password-navbar{
+	width: 200px
+}
+*/

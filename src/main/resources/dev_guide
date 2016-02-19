@@ -1,0 +1,124 @@
+1. interaction/home
+
+username - home
+
+Root	On
+	Level 1		On		Go inside		//		Discription		status		type	id
+	Level 2		Off		Go inside
+	Light 1		On
+	Light 2		Off
+	Light 3		On
+
+2. interaction/display/id
+username - id
+
+Root/Level 2 	On
+	Room 1		On		Go inside
+	Room 2		Off		Go inside
+	Room 3		On		Go inside
+	Light 1		On
+	Light 2		Off
+	Light 3		Off
+
+
+Title: home <=> id
+Breadcrums: Root <=> Root/Level 2
+
+=================================================================================
+
+interaction/home
+	GET					->	iteraction.jsp
+interaction/display/id	
+	GET					->	List<Device>
+interaction/set/id
+	POST([value ...])	->	Status
+	
+=================================================================================
+
+Root	On
+	Level 1		On		Go inside		//		Discription		status		type	id
+	Level 2		Off		Go inside
+	Light 1		On
+	Light 2		Off
+	Light 3		On
+
+Root/Level 2 	On
+	Room 1		On		Go inside
+	Room 2		Off		Go inside
+	Room 3		On		Go inside
+	Light 1		On
+	Light 2		Off
+	Light 3		Off
+
+=================================================================================
+{
+	type: DISPLAY,
+	id: 1.0
+}
+-> /interaction/display
+-> result = InteractionService.display(Command(type, id))
+
+{
+	type: SET,
+	id: 1.2,
+	status: [0, 255, 255]
+}
+-> /interaction/set
+-> result = InteractionService.set(Command(type, id, List<int>))
+
+=================================================================================
+
+(username, Command)	-> Service	-> String	->
+List<Device>		<- Service	<- String	<-
+
+(username, Command)	-> Service	-> String	->
+status				<- Service	<- String	<-
+
+=================================================================================
+
+Structure
+
+==========================================================================================================
+
+phonecatApp
+	ngRoute
+	phonecatControllers
+
+	setUpRoutes
+		/phones 			->		phone-list.html + PhoneListCtrl (get phones list)
+		/phones/:phoneId	->		phone-detail.html + PhoneDetailCtrl (get phone detail)
+
+==========================================================================================================
+
+
+
+==========================================================================================================
+
+phonecatControllers
+	PhoneListCtrl
+		phones = /app/phones.json
+
+	PhoneDetailCtrl
+		phone = /app/{phoneId}.json
+
+==========================================================================================================
+==========================================================================================================
+
+introductionApp
+	ngRoutes
+	introductionControllers
+
+	setUpRoutes
+		/introduction 			->	home.html + IntroductionController (get introduction page)
+		/introduction/projects	->	introduction.html + IntroductionController (get projects page)
+		/introduction/contacts	->	contacts.html + IntroductionController (get contacts page)
+
+interactionApp
+	ngRoutes
+	interactionControllers
+
+	setUpRoutes
+		/introduction/:id		->	interaction.html + InteractionController (get data from :id)
+
+==========================================================================================================
+

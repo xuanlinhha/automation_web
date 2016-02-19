@@ -1,0 +1,37 @@
+<div class="container">
+	<div class="row">
+		<ol class="breadcrumb">
+			<li ng-repeat="breadcrum in model.breadcrums"><a href="#/{{breadcrum.id}}">{{breadcrum.description}}</a></li>
+		</ol>
+	</div>
+	<div class="row">
+		<table class="table table-bordered">
+			<tr>
+				<th>No.</th>
+				<th>Description</th>
+				<th>Status</th>
+			</tr>
+			<tr ng-repeat="node in model.nodes">
+				<td>{{$index}}</td>
+				<td>{{node.description}}
+					<a ng-show="node.type==='SWITCH'" href="#/{{node.id}}">
+						<span class="glyphicon glyphicon-hand-right"></span>
+					</a>
+				</td>
+				<td>
+					<div ng-show="node.type==='SWITCH'||node.type==='LIGHT'">
+						<switch></switch>
+					</div>
+						
+					<div ng-show="node.type==='MOOD_LIGHT'">
+						<mood-light></mood-light>
+					</div>
+
+					<div ng-show="node.type==='COLOR_LIGHT'">
+						<color-light></color-light>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
